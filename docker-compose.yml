@@ -13,15 +13,13 @@ services:
     container_name: pi-hole
     image: pihole/pihole:latest
     restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
     ports:
       - "80:80/tcp"
       - "53:53/tcp"
       - "53:53/udp"
-    volumes:
-      - /config/pihole:/etc/pihole/
-      - /config/dnsmasq:/etc/dnsmasq.d/
+      - "443:443/tcp"
+    cap_add:
+      - NET_ADMIN
     environment:
       - ServerIP=10.0.0.3
       - DNS1='10.0.0.2#5054'
@@ -30,12 +28,15 @@ services:
       - TZ=CET
       - DNSMASQ_LISTENING=all
       - WEBPASSWORD=admin
+    # Add your own custom hostnames you need for your domain
+    extra_hosts:
+      - 'loki.eniac.local:192.168.1.5'
     networks:
       pihole_net:
         ipv4_address: 10.0.0.3
     dns:
       - 127.0.0.1
-      - 1.1.1.1
+      - 192.168.1.5
 
 networks:
   pihole_net:
