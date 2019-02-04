@@ -31,6 +31,9 @@ services:
     # Add your own custom hostnames you need for your domain
     extra_hosts:
       - 'loki.eniac.local:192.168.1.5'
+    volumes:
+      - "./config/pihole:/etc/pihole"
+      - "./config/dnsmasq:/etc/dnsmasq.d"
     networks:
       pihole_net:
         ipv4_address: 10.0.0.3
