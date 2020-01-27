@@ -22,7 +22,7 @@ services:
       - NET_ADMIN
     environment:
       - ServerIP=10.0.0.3
-      - DNS1='10.0.0.2#5054'
+      - DNS1='10.0.0.2#54'
       - DNS2=''
       - IPv6=false
       - TZ=CET
