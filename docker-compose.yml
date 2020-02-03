@@ -4,6 +4,8 @@ services:
   cloudflared:
     container_name: cloudflared
     image: visibilityspots/cloudflared:arm
+    cap_add:
+      - NET_ADMIN
     restart: unless-stopped
     networks:
       pihole_net:
